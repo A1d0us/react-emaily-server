@@ -4,14 +4,20 @@
   "private": true,
   "scripts": {
     "start": "node --env-file=.env index.js",
-    "dev": "nodemon --env-file=.env index.js"
+    "server": "nodemon --env-file=.env index.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "deploy": "npm install && npm install --prefix client && npm run build --prefix client"
   },
   "dependencies": {
+    "body-parser": "^1.20.3",
+    "concurrently": "^9.1.0",
     "cookie-session": "^2.1.0",
     "express": "^4.21.2",
     "mongoose": "^8.9.2",
     "nodemon": "^3.1.9",
     "passport": "^0.5.3",
-    "passport-google-oauth20": "^2.0.0"
+    "passport-google-oauth20": "^2.0.0",
+    "stripe": "^17.5.0"
   }
 }
